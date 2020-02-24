@@ -1,9 +1,25 @@
 <p>
-    elo
+    test1
 </p>
 
 <ul>
 {% for person in object_list %}
 <li>{{person.name}} - {{ person.preferences.all}} - {{person.choose}}</li>
+{% endfor %}
+</ul>
+
+
+
+
+<p>
+    test2
+</p>
+
+<ul>
+{% for person in object_list %}
+<li>{{person.name}} - {% for preferences in pref_of_person %}
+    {{ preferences }}
+    {% endfor %}
+    - </li>
 {% endfor %}
 </ul>
