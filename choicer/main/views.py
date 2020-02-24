@@ -31,6 +31,9 @@ for preferences in person.preferences:
 #  https://django-filter.readthedocs.io/en/master/ref/filters.html
 #  filtry w django
 
+#  https://stackoverflow.com/questions/45670381/how-to-display-records-belongs-to-categories-in-django
+#  ciekawa apka - sprawdzic
+
 
 
 '''
