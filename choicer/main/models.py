@@ -21,11 +21,11 @@ class Game(models.Model):
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", default=0)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", default=0)
 
-
+# https://rk.edu.pl/pl/widok-filtrujcy-w-django/
     class Game(models.Model):
-        def clean(self, *args, **kwargs):
+        def __init__(self, *args, **kwargs):
             self.clean_players()
-            return super().clean(*args, **kwargs)  # super pozwala zachować dane, które normalnie zostalby nadpisane
+            super().__init__(*args, **kwargs)  # super pozwala zachować dane, które normalnie zostalby nadpisane
 
         def clean_players():
             if self.max_players - self.min_players < 0:
