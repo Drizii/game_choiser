@@ -1,0 +1,9 @@
+
+{{ filter.form|bootstrap }}
+
+<ul>
+    {% for person in filter.qs %}
+    <li>
+        <a href="{% url 'persons:detail' snippet.id %}">{{ person.name }}</a>
+    </li>
+</ul>
