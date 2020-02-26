@@ -10,17 +10,17 @@
 </head>
 <body>
 <div class="container">
-
+<form>
+  <label for="name">Nazwa gry: </label><br>
+  <input type="text" id="name" name="name"><br>
+  <input type="submit" value="Wyszukaj">
+</form>
 {% for p in game %}
     <li>{{ p.pk}}. {{ p.name }} - {{ p.game_type }}.</br>
     &emsp;&emsp;Minimalna liczba graczy to: {{ p.min_player }}.</br>
     &emsp;&emsp;Maksymalna liczba graczy to: {{ p.max_player }} </li>
 {% endfor %}
-<form>
-  <label for="name">First name:</label><br>
-  <input type="text" id="name" name="name"><br>
-  <input type="submit" value="Submit">
-</form>
+
 </div>
 </body>
 </html>
