@@ -1,11 +1,10 @@
-from .models import Preferences, Game, Person
+from .models import Game, Person
+from django.views.generic import ListView
 
-
-
-
-
-
-
+class Game_view(ListView):
+    model = Game
+    template_name = "main/filtrujemy.html"
+    context_object_name = 'game'
 
 
 
