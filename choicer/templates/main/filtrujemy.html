@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,7 +12,9 @@
 <div class="container">
 
 {% for p in game %}
-<li>{{ p.pk}}. {{ p.name }} Minimalna liczba graczy to:{{ p.min_player }}. Maksymalna liczba graczy to:{{ p.max_player }} </li>
+    <li>{{ p.pk}}. {{ p.name }} - {{ p.game_type }}.</br>
+    &emsp;&emsp;Minimalna liczba graczy to: {{ p.min_player }}.</br>
+    &emsp;&emsp;Maksymalna liczba graczy to: {{ p.max_player }} </li>
 {% endfor %}
 </div>
 </body>

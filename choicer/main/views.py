@@ -1,13 +1,19 @@
-from .models import Game, Person
-from django.views.generic import TemplateView
+from .models import Game
 from django.views. generic import ListView
 
 
 class GameListView(ListView):
     model = Game
     template_name = "main/filtrujemy.html"
-    #context_object_name = 'game'
+    context_object_name = 'game'
+    ordering = "game_type" #ordering = nazwa-pola // nazwa - to nazwa mojego pola, a pole to moje mole z modelu
 
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            self.queryset = self.model.objects.filter(name=name)
+
+        return super().get_queryset()
 
 
 
