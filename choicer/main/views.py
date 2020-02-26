@@ -1,7 +1,8 @@
 from .models import Game, Person
-from django.views.generic import ListView
+from django.views.generic import TemplateView
 
-class Game_view(ListView):
+
+class GameListView(ListView):
     model = Game
     template_name = "main/filtrujemy.html"
     context_object_name = 'game'

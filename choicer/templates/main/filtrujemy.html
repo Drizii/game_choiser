@@ -12,5 +12,8 @@
 <h1> {{ game.min_player }} </h1>
 <h1> {{ game.max_player }} </h1>
 <h1> {{ game.game_type }} </h1>
+
+
+{% for p in game %} <li>{{ game.pk}}. {{ game.name }}</li>{% endfor %}
 </body>
 </html>
