@@ -5,15 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Elko</title>
 </head>
 <body>
-<h1> {{ game.name }} </h1>
-<h1> {{ game.min_player }} </h1>
-<h1> {{ game.max_player }} </h1>
-<h1> {{ game.game_type }} </h1>
+<div class="container">
 
-
-{% for p in game %} <li>{{ game.pk}}. {{ game.name }}</li>{% endfor %}
+{% for p in game %}
+<li>{{ p.pk}}. {{ p.name }} Minimalna liczba graczy to:{{ p.min_player }}. Maksymalna liczba graczy to:{{ p.max_player }} </li>
+{% endfor %}
+</div>
 </body>
 </html>
