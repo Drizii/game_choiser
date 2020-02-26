@@ -1,4 +1,4 @@
-from .models import Game
+from .models import Game, Person
 from django.views. generic import ListView
 
 
@@ -6,13 +6,13 @@ class GameListView(ListView):
     model = Game
     template_name = "main/filtrujemy.html"
     context_object_name = 'game'
-    ordering = "game_type" #ordering = nazwa-pola // nazwa - to nazwa mojego pola, a pole to moje mole z modelu
+    ordering = "game_type"  #ordering = nazwa-pola // nazwa - to nazwa mojego pola, a pole to moje mole z modelu
 
     def get_queryset(self):
         name = self.request.GET.get("name")
         if name:
-            self.queryset = self.model.objects.filter(name=name)
-
+            self.queryset = self.model.objects.filter(name__icontains=name)
+            # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
         return super().get_queryset()
 
 
