@@ -41,7 +41,7 @@ class Game(models.Model):
 
     def clean(self):
         self.clean_players()
-        super().clean()  # super pozwala zachować dane, które normalnie zostalby nadpisane, tu zamiast @clean były próby używania save i __init__ ale nie działało :/, save dawalo komunika na stronie z błędem a __init__ nie działałow  cale, mozna pokombinowac aby błąd pojawiał sie w innym miejscu, ale narazie tyle starczy
+        super().clean()  # super pozwala zachować dane, które normalnie zostalby nadpisane, tu zamiast @clean były próby używania save i __init__ ale nie działało :/, save dawalo komunika na stronie z błędem a __init__ nie działało  wcale, mozna pokombinowac aby błąd pojawiał sie w innym miejscu, ale narazie tyle starczy
 
     def clean_players(self):
         if self.max_player - self.min_player < 0:

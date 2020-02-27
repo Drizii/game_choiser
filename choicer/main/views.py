@@ -15,6 +15,11 @@ class GameListView(ListView):
             # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
         return super().get_queryset()
 
+    def get_queryset(self):
+        game_type = self.request.GET.get("game_type")
+        if game_type:
+            self.queryset = self.model.objects.filter(game_type__icontains=game_type)
+        return super().get_queryset()
 
 
 
