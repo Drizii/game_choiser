@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 game_type_like_choices: List[Tuple[str, str]] = [
     ('wybierz', 'wybierz'),
-    ('strategiczna', 'Gra strategiczna'),  # 2 slowo wyswietla to co widzi użytkownik
+    ('Gra strategiczna', 'Gra strategiczna'),  # 2 slowo wyswietla to co widzi użytkownik
     ('Eurogry', 'Eurogry'),
     ('Ameritrashe', 'Ameritrashe'),
     ('Gry bitewne i wojenne', 'Gry bitewne i wojenne'),
