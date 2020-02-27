@@ -21,15 +21,15 @@
     <input type="submit" value="Wyszukaj"></br>
 </form>
                     <!Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu>
-<form method="GET">
-<label for="game_type">Wybierz po typie gry: </label><br>
+<form>
+<label for="game_type">Wyszukaj po typie gry: </label><br>
 <select id="game_type" name="game_type">
     <option value=""></option>
     {% for p in game %}
     <option  value="{{ p.game_type }}">{{ p.game_type }}</option>
     {% endfor %}
 </select>
-    </br><input type="submit" value="Select">
+    </br><input type="submit" value="Wybierz">
 </form>
                     <!To wyświetla wszystkie pozycje z bazy danych na stronie>
 {% for p in game %}
@@ -39,7 +39,7 @@
 {% endfor %}
 
 <form>
-  <input type="button" value="Go back!" onclick="history.back()">
+  <input type="button" value="Wróć do strony wyszukiwania" onclick="history.back()">
 </form>
 </div>
 </body>
