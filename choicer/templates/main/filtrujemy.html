@@ -20,17 +20,15 @@
   <input type="text" id="name" name="name"><br>
     <input type="submit" value="Wyszukaj"></br>
 </form>
-                    <!Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu>
-<form>
-<label for="game_type">Wyszukaj po typie gry: </label><br>
-<select id="game_type" name="game_type">
-    <option value=""></option>
-    {% for p in game %}
-    <option  value="{{ p.game_type }}">{{ p.game_type }}</option>
-    {% endfor %}
-</select>
+                    <!Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu
+    korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi rozwijana liste, to nie wiem >
+
+<form></br>
+    <table>
+{{ form.as_table }}
+    </table>
     </br><input type="submit" value="Wybierz">
-</form>
+</form></br>
                     <!To wyświetla wszystkie pozycje z bazy danych na stronie>
 {% for p in game %}
     <li>{{ p.pk}}. {{ p.name }} - {{ p.game_type }}.</br>

@@ -29,7 +29,7 @@ class Person(models.Model):
 
 
 class Game(models.Model):
-    name = models.CharField(verbose_name="Nazwa gry", max_length=128)
+    name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", default=0)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", default=0)
     game_type = models.CharField(
