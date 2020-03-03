@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Fltrowanko nr 2</title>
+</head>
+<body>
+<div class="container">
+<h1>Witaj, to inny filtr, który wypróbowuję </h1>
+<form method="get", action="" id="searchform"></br>
+    <table>
+{{ filter.form.as_table }}
+    </table>
+    </br><input type="submit" value="Wybierz"> &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Wróć do strony wyszukiwania" onclick="window.location.href = 'http://127.0.0.1:8000/a/a'">
+</form></br>
+
+    <table style="width:100%" >
+  <tr style="text-align:center">
+    <th>Nazwa gry</th>
+    <th>Rodzaj gry</th>
+    <th>Minimalna liczba graczy</th>
+    <th>Maksymalna liczba graczy</th>
+    <th>Właściciel</th>
+  </tr >
+    {% for p in filter.qs %}
+  <tr style="text-align:center">
+    <td>{{ p.name }}</td>
+    <td>{{ p.game_type }}</td>
+    <td>{{ p.min_player }}</td>
+    <td>{{ p.max_player }}</td>
+    <td>{{ p.owner }}</td>
+  </tr>
+    {% endfor %}
+</table>
+
+</div>
+</body>
+</html>

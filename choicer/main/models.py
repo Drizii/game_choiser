@@ -3,7 +3,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 game_type_like_choices: List[Tuple[str, str]] = [
-    ('wybierz', 'wybierz'),
+    ('', ''),
     ('Gra strategiczna', 'Gra strategiczna'),  # 2 slowo wyswietla to co widzi użytkownik
     ('Eurogry', 'Eurogry'),
     ('Ameritrashe', 'Ameritrashe'),
@@ -13,6 +13,8 @@ game_type_like_choices: List[Tuple[str, str]] = [
     ('Gry imprezowe', 'Gry imprezowe'),
     ('Gry rodzinne', 'Gry rodzinne'),
 ]
+
+
 
 
 class Person(models.Model):
@@ -29,6 +31,11 @@ class Person(models.Model):
 
 
 class Game(models.Model):
+    owners = [
+        ("Dawid", "Dawid"),
+        ("Jakub", "Jakub"),
+        ("Marcin", "Marcin"),
+    ]
     name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", default=0)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", default=0)
@@ -36,7 +43,15 @@ class Game(models.Model):
         verbose_name="Jaki to typ gry",
         max_length=30,
         choices=game_type_like_choices,
-        default='wybierz',
+        default='',
+        blank=True,
+    )
+    owner = models.CharField(
+        max_length=50,
+        choices=owners,
+        default='',
+        blank=True,
+        verbose_name="Właściciel"
     )
 
     def clean(self):

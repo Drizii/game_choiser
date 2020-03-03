@@ -10,35 +10,52 @@
 </head>
 <body>
 <div class="container">
+    <h1>Witaj, jakiej gry szukasz?</h1>
+<!-- Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu
+korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi rozwijana liste, to nie wiem -->
+<form method="get", action="" id="searchform"></br>
+    <table>
+{{ form.as_table }}
+    </table>
+    </br><input type="submit" value="Wybierz">&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Wróć do strony wyszukiwania" onclick="window.location.href = 'http://127.0.0.1:8000/a/'">
+</form></br>
+                    <!--To wyświetla wszystkie pozycje z bazy danych na stronie-->
+
+<table style="width:100%" >
+  <tr>
+    <th>Nazwa gry</th>
+    <th>Rodzaj gry</th>
+    <td>Minimalna liczba graczy</td>
+    <td>Maksymalna liczba graczy</td>
+    <td>Właściciel</td>
+  </tr>
+    {% for p in game %}
+  <tr>
+    <td>{{ p.name }}</td>
+    <td>{{ p.game_type }}</td>
+    <td>{{ p.min_player }}</td>
+    <td>{{ p.max_player }}</td>
+    <td>{{ p.owner }}</td>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+</body>
+</html>
+
+
+<!--
 <form>
                     <!To wyszukuje gre po typie game_type>
   <label for="game_type">Wyszukaj po typie gry: </label><br>
   <input type="text" id="game_type" name="game_type"><br>
     <input type="submit" value="Wyszukaj"></br>
-                    <!to wyszukuje gre po wpisaniu nazwy gry>
-  <label for="name">Wyszukaj po nazwie gry: </label><br>
+</form>
+<form>
+                    <!To wyszukuje gre po nazwie>
+  <label for="name">Wyszukaj po nazwie:  </label><br>
   <input type="text" id="name" name="name"><br>
     <input type="submit" value="Wyszukaj"></br>
 </form>
-                    <!Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu
-    korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi rozwijana liste, to nie wiem >
-
-<form></br>
-    <table>
-{{ form.as_table }}
-    </table>
-    </br><input type="submit" value="Wybierz">
-</form></br>
-                    <!To wyświetla wszystkie pozycje z bazy danych na stronie>
-{% for p in game %}
-    <li>{{ p.pk}}. {{ p.name }} - {{ p.game_type }}.</br>
-    &emsp;&emsp;Minimalna liczba graczy to: {{ p.min_player }}.</br>
-    &emsp;&emsp;Maksymalna liczba graczy to: {{ p.max_player }} </li>
-{% endfor %}
-
-<form>
-  <input type="button" value="Wróć do strony wyszukiwania" onclick="history.back()">
-</form>
-</div>
-</body>
-</html>
+-->
