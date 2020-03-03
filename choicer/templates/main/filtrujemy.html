@@ -36,7 +36,7 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
     <td>{{ p.game_type }}</td>
     <td>{{ p.min_player }}</td>
     <td>{{ p.max_player }}</td>
-    <td>{% for owner in p.owner.all  %}{{ owner }}{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+    <td><a href="{{ p.get_absolute_url }} ">{% for owner in p.owner.all  %}{{ owner }}{% if not forloop.last %}, {% endif %} {% endfor %}</a></td>
   </tr>
     {% endfor %}
 </table>

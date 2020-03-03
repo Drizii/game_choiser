@@ -26,8 +26,8 @@ class GameListView(ListView):
             self.queryset = self.queryset.filter(min_player__gte=min_player)
         if max_player:
             self.queryset = self.queryset.filter(max_player__lte=max_player)
- #      if owner:
- #          self.queryset = self.queryset.filter(owner__incontains=owner)
+        if owner:
+            self.queryset = self.queryset.filter(owner__icontains=owner)
         return super().get_queryset()
     # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
 
@@ -36,8 +36,10 @@ class GameDetailView(DetailView):
     model = Game
 
 
+class PersonListView(ListView): # wylistowanie gier, które są posiadane przez właściciela
+    model = Person
+
 class PersonDetailView(DetailView):
-    template_name = 'main/person_detail.html'
     model = Person
 
 '''
