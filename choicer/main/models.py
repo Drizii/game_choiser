@@ -16,8 +16,6 @@ game_type_like_choices: List[Tuple[str, str]] = [
 ]
 
 
-
-
 class Person(models.Model):
     name = models.CharField(verbose_name="Imie i nazwisko", max_length=128)
     game_type_like = models.CharField(
@@ -29,6 +27,9 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("person-detail", args=[self.pk])
 
 
 class Game(models.Model):
@@ -53,7 +54,7 @@ class Game(models.Model):
             raise ValidationError("Maksymalna liczba graczy musi być większa niż minimalna")
 
     def get_absolute_url(self):
-        return reverse("game-detail", args = [self.pk])
+        return reverse("game-detail", args=[self.pk])
 
     def __str__(self):
         return self.name

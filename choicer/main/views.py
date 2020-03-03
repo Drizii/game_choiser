@@ -1,8 +1,7 @@
-from .models import Game
+from .models import Game, Person
 from django.views.generic import ListView, DetailView
 from .forms import GameTypeForm
-from .filter import GameFilter
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 
 class GameListView(ListView):
@@ -27,14 +26,20 @@ class GameListView(ListView):
             self.queryset = self.queryset.filter(min_player__gte=min_player)
         if max_player:
             self.queryset = self.queryset.filter(max_player__lte=max_player)
- #       if owner:
- #         self.queryset = self.queryset.filter(owner__incontains=owner)
+ #      if owner:
+ #          self.queryset = self.queryset.filter(owner__incontains=owner)
         return super().get_queryset()
     # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
 
 
 class GameDetailView(DetailView):
     model = Game
+
+
+class PersonDetailView(DetailView):
+    template_name = 'main/person_detail.html'
+    model = Person
+
 '''
 def search(request):
     game_list = Game.object.all()
