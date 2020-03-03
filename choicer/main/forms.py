@@ -1,8 +1,12 @@
-from .models import Game
-from django.forms import ModelForm
+from .models import Game, Person
+from django import forms
 
 
-class GameTypeForm(ModelForm):
+class GameTypeForm(forms.ModelForm):
+    owner = forms.ModelMultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            required=False, queryset=Person.objects.all())
+
     class Meta:
         model = Game
-        fields = ["game_type", "name", "min_player", "max_player"]
+        fields = "__all__"

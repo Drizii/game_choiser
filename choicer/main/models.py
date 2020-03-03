@@ -1,6 +1,7 @@
 from typing import List, Tuple
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 game_type_like_choices: List[Tuple[str, str]] = [
     ('', ''),
@@ -31,14 +32,9 @@ class Person(models.Model):
 
 
 class Game(models.Model):
-    owners = [
-        ("Dawid", "Dawid"),
-        ("Jakub", "Jakub"),
-        ("Marcin", "Marcin"),
-    ]
     name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
-    min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", default=0)
-    max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", default=0)
+    min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", blank=True, null=True)
+    max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", blank=True, null=True)
     game_type = models.CharField(
         verbose_name="Jaki to typ gry",
         max_length=30,
@@ -46,13 +42,7 @@ class Game(models.Model):
         default='',
         blank=True,
     )
-    owner = models.CharField(
-        max_length=50,
-        choices=owners,
-        default='',
-        blank=True,
-        verbose_name="Właściciel"
-    )
+    owner = models.ManyToManyField(Person)
 
     def clean(self):
         self.clean_players()
@@ -61,6 +51,9 @@ class Game(models.Model):
     def clean_players(self):
         if self.max_player - self.min_player < 0:
             raise ValidationError("Maksymalna liczba graczy musi być większa niż minimalna")
+
+    def get_absolute_url(self):
+        return reverse("game-detail", args = [self.pk])
 
     def __str__(self):
         return self.name
