@@ -1,20 +1,8 @@
-<!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style>
-        img {
-        width:110px
-        }
-    </style>
+{% extends 'base.html' %}
+{% block title %}Wyszukiwacz{% endblock %}
+
     <title>Wybieracz gier</title>
-</head>
-<body>
-<div class="container">
+{% block body %}
     <h1>Witaj, jakiej gry szukasz?</h1>
 <!-- Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu
 korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi rozwijana liste, to nie wiem -->
@@ -47,22 +35,4 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
   </tr>
     {% endfor %}
 </table>
-</div>
-</body>
-</html>
-
-
-<!--
-<form>
-                    <!To wyszukuje gre po typie game_type>
-  <label for="game_type">Wyszukaj po typie gry: </label><br>
-  <input type="text" id="game_type" name="game_type"><br>
-    <input type="submit" value="Wyszukaj"></br>
-</form>
-<form>
-                    <!To wyszukuje gre po nazwie>
-  <label for="name">Wyszukaj po nazwie:  </label><br>
-  <input type="text" id="name" name="name"><br>
-    <input type="submit" value="Wyszukaj"></br>
-</form>
--->
+{% endblock %}
