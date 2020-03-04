@@ -1,6 +1,7 @@
 from .models import Game, Person
 from django.views.generic import ListView, DetailView
-from .forms import GameTypeForm
+from .forms import GameTypeForm, RegisterForm
+from django.views.generic import CreateView
 
 
 class GameListView(ListView):
@@ -37,6 +38,10 @@ class PersonDetailView(DetailView):
     model = Person
     context_object_name = "person_detail"
 
+
+class UserCreateView(CreateView):
+    form_class = RegisterForm
+    template_name = "users/register.html"
 
 '''
 def search(request):
