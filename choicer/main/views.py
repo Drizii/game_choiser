@@ -13,18 +13,15 @@ class GameListView(ListView):
     def get_queryset(self):
         game_type = self.request.GET.get("game_type")
         name = self.request.GET.get("name")
-        min_player = self.request.GET.get("min_player")
-        max_player = self.request.GET.get("max_player")
+        player_num = self.request.GET.get("player_num")
         owner = self.request.GET.get("owner")
         self.queryset = self.model.objects.all()
         if game_type:
             self.queryset = self.queryset.filter(game_type__icontains=game_type)
         if name:
             self.queryset = self.queryset.filter(name__icontains=name)
-        if min_player:
-            self.queryset = self.queryset.filter(min_player__gte=min_player)
-        if max_player:
-            self.queryset = self.queryset.filter(max_player__lte=max_player)
+        if player_num:
+            self.queryset = self.queryset.filter(min_player__lte=player_num, max_player__gte=player_num)
         if owner:
             self.queryset = self.queryset.filter(owner=owner)
         return super().get_queryset()
