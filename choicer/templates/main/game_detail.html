@@ -13,6 +13,7 @@
 <table style="width:100%" >
   <tr>
     <th>Nazwa gry</th>
+    <th>Zdjęcie gry</th>
     <th>Rodzaj gry</th>
     <td>Minimalna liczba graczy</td>
     <td>Maksymalna liczba graczy</td>
@@ -20,6 +21,7 @@
   </tr>
   <tr>
     <td>{{ game.name }}</td>
+    <td><img src="{{ game.image }}" alt="..."></td>
     <td>{{ game.game_type }}</td>
     <td>{{ game.min_player }}</td>
     <td>{{ game.max_player }}</td>

@@ -11,16 +11,23 @@
 <body>
 <div class="container">
 <table style="width:100%" >
-  <tr>
-    <th>Właściciel</th>
-    <th>rodzaj gry</th>
-  </tr>
-  <tr>
-    <td>{{ person.name }}</td>
-    <td>{{ person.game_type_like }}</td>
-  </tr>
+  <ul>
+    <li>Właściciel: {{ person_detail.name }}</li>
+    <li>Ulubiony rodzaj gry: {{ person_detail.game_type_like }}</li>
+    <li>Posiadasz następujące gry:</li>
+  </ul>
+
+
+    {% for per in person_detail.game_set.all %}
+    <li>{{ per }}</li>
+    {% if not forloop.last %} &nbsp
+    {% endif %}
+    {% endfor %}
+
 </table>
+
     <input type="button" value="Wróć do strony wyszukiwania" onclick="window.location.href = 'http://127.0.0.1:8000/a/'">
 </div>
+
 </body>
 </html>

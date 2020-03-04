@@ -34,6 +34,7 @@ class Person(models.Model):
 
 class Game(models.Model):
     name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
+    image = models.ImageField(verbose_name="Zdjęcie gry", null=True, blank=True, upload_to="game_images")
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", blank=True, null=True)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", blank=True, null=True)
     game_type = models.CharField(

@@ -1,7 +1,6 @@
 from .models import Game, Person
 from django.views.generic import ListView, DetailView
 from .forms import GameTypeForm
-from django.shortcuts import get_object_or_404, render
 
 
 class GameListView(ListView):
@@ -27,7 +26,7 @@ class GameListView(ListView):
         if max_player:
             self.queryset = self.queryset.filter(max_player__lte=max_player)
         if owner:
-            self.queryset = self.queryset.filter(owner__icontains=owner)
+            self.queryset = self.queryset.filter(owner=owner)
         return super().get_queryset()
     # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
 
@@ -36,11 +35,11 @@ class GameDetailView(DetailView):
     model = Game
 
 
-class PersonListView(ListView): # wylistowanie gier, które są posiadane przez właściciela
-    model = Person
 
 class PersonDetailView(DetailView):
     model = Person
+    context_object_name = "person_detail"
+
 
 '''
 def search(request):

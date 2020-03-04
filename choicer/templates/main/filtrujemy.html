@@ -6,6 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        img {
+        width:110px
+        }
+
+
+    </style>
     <title>Wybieracz gier</title>
 </head>
 <body>
@@ -25,18 +32,20 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
 <table style="width:100%" >
   <tr>
     <th>Nazwa gry</th>
+    <th>Zdjecie</th>
     <th>Rodzaj gry</th>
     <td>Minimalna liczba graczy</td>
     <td>Maksymalna liczba graczy</td>
     <td>Właściciele: </td>
   </tr>
-    {% for p in game_list %}
+    {% for g in game_list %}
   <tr>
-    <td> <a href="{{ p.get_absolute_url }} ">{{ p.name }}</a></td>
-    <td>{{ p.game_type }}</td>
-    <td>{{ p.min_player }}</td>
-    <td>{{ p.max_player }}</td>
-    <td><a href="{{ p.get_absolute_url }} ">{% for owner in p.owner.all  %}{{ owner }}{% if not forloop.last %}, {% endif %} {% endfor %}</a></td>
+    <td> <a href="{{ g.get_absolute_url }} ">{{ g.name }}</a></td> <!-- ten url tu prawidłowo prowadzi do GameDetailView -->
+    <td>{% if g.image %}<img src="{{ g.image.url }}" alt="...">{% endif %}</td>
+    <td>{{ g.game_type }}</td>
+    <td>{{ g.min_player }}</td>
+    <td>{{ g.max_player }}</td>
+    <td>{% for owner in g.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
   </tr>
     {% endfor %}
 </table>
