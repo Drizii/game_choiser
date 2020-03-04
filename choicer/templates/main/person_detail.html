@@ -18,8 +18,8 @@
   </ul>
 
 
-    {% for per in person_detail.game_set.all %}
-    <li>{{ per }}</li>
+    {% for game in person_detail.game_set.all %} <! --to jest gra własciciela -->
+    <li><a href="{{ game.get_absolute_url }} ">{{ game.name }}</a></li>
     {% if not forloop.last %} &nbsp
     {% endif %}
     {% endfor %}

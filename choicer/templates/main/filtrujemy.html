@@ -36,14 +36,14 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
     <td>Maksymalna liczba graczy</td>
     <td>Właściciele: </td>
   </tr>
-    {% for g in game_list %}
+    {% for game in game_list %}
   <tr>
-    <td> <a href="{{ g.get_absolute_url }} ">{{ g.name }}</a></td> <!-- ten url tu prawidłowo prowadzi do GameDetailView -->
-    <td>{% if g.image %}<img src="{{ g.image.url }}" alt="...">{% endif %}</td>
-    <td>{{ g.game_type }}</td>
-    <td>{{ g.min_player }}</td>
-    <td>{{ g.max_player }}</td>
-    <td>{% for owner in g.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+    <td> <a href="{{ game.get_absolute_url }} ">{{ game.name }}</a></td> <!-- ten url tu prawidłowo prowadzi do GameDetailView -->
+    <td>{% if game.image %}<img src="{{ game.image.url }}" alt="...">{% endif %}</td>
+    <td>{{ game.game_type }}</td>
+    <td>{{ game.min_player }}</td>
+    <td>{{ game.max_player }}</td>
+    <td>{% for owner in game.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
   </tr>
     {% endfor %}
 </table>
