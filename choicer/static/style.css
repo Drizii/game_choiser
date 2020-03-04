@@ -4,8 +4,12 @@
     }
 
     img {
-        width:110px
+        width:90px;
+        height:90px;
     }
     h1 {
     color: red;
+    }
+    td {
+    text-align:char;
     }
