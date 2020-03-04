@@ -1,7 +1,11 @@
     body {
-        background-color: green;
+        background:
+        url("2732571.jpg");
     }
 
     img {
         width:110px
+    }
+    h1 {
+    color: red;
     }

@@ -3,19 +3,27 @@
 
     <title>Wybieracz gier</title>
 {% block body %}
-    <h1>Witaj, jakiej gry szukasz?</h1>
+<div class="container">
+  <div class="jumbotron" >
+    <h1 >Jakiej gry poszukujesz? </h1>
+    <p>Powiesz mi jakiego rodzaju gry poszukujesz, a ja dobiorę najodpowiedniejszą do Twoich potrzeb.</p>
+  </div>
+</div>
 <!-- Tu jest lista gier, która się rozwija i wybiera i pokazuje gry tylko z danego typu
 korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi rozwijana liste, to nie wiem -->
 <form method="get", action="" id="searchform"></br>
-    <table>
+<div class="table-responsive">
+  <table class="table">
 {{ form.as_table }}
-    </table>
+  </table>
+</div>
     </br><input type="submit" value="Wybierz">&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="button" value="Wróć do strony wyszukiwania" onclick="window.location.href = 'http://127.0.0.1:8000/a/'">
 </form></br>
                     <!--To wyświetla wszystkie pozycje z bazy danych na stronie-->
 
-<table style="width:100%" >
+<div class="table-responsive">
+  <table class="table">
   <tr>
     <th>Nazwa gry</th>
     <th>Zdjecie</th>
@@ -34,5 +42,6 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
     <td>{% for owner in game.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
   </tr>
     {% endfor %}
-</table>
+  </table>
+</div>
 {% endblock %}

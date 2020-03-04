@@ -38,13 +38,13 @@ class Game(models.Model):
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", blank=True, null=True)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", blank=True, null=True)
     game_type = models.CharField(
-        verbose_name="Jaki to typ gry",
+        verbose_name="Typ gry",
         max_length=30,
         choices=game_type_like_choices,
         default='',
         blank=True,
     )
-    owner = models.ManyToManyField(Person)
+    owner = models.ManyToManyField(Person, verbose_name="Właściciel")
 
     def clean(self):
         self.clean_players()
