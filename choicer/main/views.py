@@ -33,7 +33,6 @@ class GameDetailView(DetailView):
     model = Game
 
 
-
 class PersonDetailView(DetailView):
     model = Person
     context_object_name = "person_detail"
@@ -41,7 +40,8 @@ class PersonDetailView(DetailView):
 
 class UserCreateView(CreateView):
     form_class = RegisterForm
-    template_name = "users/register.html"
+    template_name = "registration/register.html"
+
 
 '''
 def search(request):

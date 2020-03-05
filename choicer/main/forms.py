@@ -12,7 +12,6 @@ class GameTypeForm(forms.ModelForm):
             widget=forms.CheckboxSelectMultiple,
             required=False, queryset=Person.objects.all())
 
-
     class Meta:
         model = Game
         exclude = ('image', 'min_player', 'max_player')
@@ -20,6 +19,13 @@ class GameTypeForm(forms.ModelForm):
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
+    username = forms.CharField(label="Nazwa użytkownika")
+    password1 = forms.CharField(label="Hasło", help_text="Twoje hasło nie może być zbyt podobne do innych danych osobowych.<br>"
+                                                         "Twoje hasło musi zawierać co najmniej 8 znaków.<br>"
+                                                         "Twoje hasło nie może być powszechnie używanym hasłem.<br>"
+                                                         "Twoje hasło nie może być całkowicie numeryczne.")
+
+    password2 = forms.CharField(label="Powtórz hasło", help_text="W celu weryfikacji powtórz hasło.")
 
     class Meta:
         model = User
