@@ -22,9 +22,9 @@ class GameListView(ListView):
         if name:
             self.queryset = self.queryset.filter(name__icontains=name)
         if player_num:
-            self.queryset = self.queryset.filter(min_player__lte=player_num, max_player__gte=player_num)  # TODO: zamina wyświetlanje nazwy
+            self.queryset = self.queryset.filter(min_player__lte=player_num, max_player__gte=player_num)
         if owner:
-            self.queryset = self.queryset.filter(owner=owner)  # TODO: zamina wyświetlanje nazwy
+            self.queryset = self.queryset.filter(owner=owner)
         return super().get_queryset()
     # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
 
