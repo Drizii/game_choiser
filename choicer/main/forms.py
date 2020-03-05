@@ -12,7 +12,7 @@ class GameTypeForm(forms.ModelForm):
     owner = forms.ModelMultipleChoiceField(
             label="Właściciel",
             widget=forms.CheckboxSelectMultiple,
-            required=False, queryset=Person.objects.all())
+            required=False, queryset=Person.objects.all())  # to jest nowe pole, którego nie ma w models.py
 
     class Meta:
         model = Game

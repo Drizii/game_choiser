@@ -2,6 +2,7 @@ from typing import List, Tuple
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 game_type_like_choices: List[Tuple[str, str]] = [
     ('', ''),
@@ -31,6 +32,14 @@ class Person(models.Model):
     def get_absolute_url(self):
         return reverse("person-detail", args=[self.pk])
 
+'''
+class UserGame(models.Model):
+    name = models.CharField(max_length=200, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="UserGames", null=True)
+
+    def __str__(self):
+        return self.user
+''' # TODO: zastanwoić sie nad zaimplementowaniem tego
 
 class Game(models.Model):
     name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
@@ -45,6 +54,7 @@ class Game(models.Model):
         blank=True,
     )
     owner = models.ManyToManyField(Person, verbose_name="Właściciel")
+    #usergame = models.ForeignKey(UserGame, on_delete=models.CASCADE) # TODO: zastanwoić sie nad zaimplementowaniem tego
 
     def clean(self):
         self.clean_players()
@@ -59,6 +69,5 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
-
 
 # https://rk.edu.pl/pl/widok-filtrujcy-w-django/

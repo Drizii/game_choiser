@@ -1,3 +1,6 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
 from .models import Game, Person
 from django.views.generic import ListView, DetailView
 from .forms import GameTypeForm, RegisterForm
@@ -43,7 +46,48 @@ class UserCreateView(CreateView):
     template_name = "registration/register.html"
 
 
+
 '''
+-------------------------------------------------------------------------------------------------------------------------
+'''  # TODO: test serializer  - REST API
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import GameSerializer
+
+class GameList(APIView):
+
+    def get(self, requset):
+        games = Game.objects.all()
+        serializer = GameSerializer(games, many=True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass
+
+
+# TODO: zastanwoić sie nad zaimplementowaniem tego
+# https://techwithtim.net/tutorials/django/user-specific-pages-data/
+''' 
+def create(response):
+    if response.method == "POST":
+        form = CreateNewList(response.POST)
+
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            t = UserGames(name=n)
+            t.save()
+            response.user.usergame.add(t)  # adds the to do list to the current logged in user
+
+            return HttpResponseRedirect("/%i" %t.id)
+
+    else:
+        form = CreateNewList()
+
+    return render(response, "test/create.html", {"form": form})
+
+'''
+'''
+to jest do filtrujemy.py
 def search(request):
     game_list = Game.object.all()
     game_filter = GameFilter(request.GET, queryset=game_list)
