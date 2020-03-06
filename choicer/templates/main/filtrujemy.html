@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Wyszukiwacz{% endblock %}
-
-    <title>Wybieracz gier</title>
+<head>
+    <style>
+        img {
+            width:90px;
+            height:90px;
+        }
+    </style>
+</head>
 {% block body %}
 <div class="container">
   <div class="jumbotron" >
@@ -21,27 +27,32 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
     <input type="button" value="Wróć do strony wyszukiwania" onclick="window.location.href = 'http://127.0.0.1:8000/a/'">
 </form></br>
                     <!--To wyświetla wszystkie pozycje z bazy danych na stronie-->
-
-<div class="table-responsive">
-  <table class="table">
-  <tr>
-    <th>Nazwa gry</th>
-    <th>Zdjecie</th>
-    <th>Rodzaj gry</th>
-    <td>Minimalna liczba graczy</td>
-    <td>Maksymalna liczba graczy</td>
-    <td>Właściciele: </td>
-  </tr>
-    {% for game in game_list %}
-  <tr>
-    <td> <a href="{{ game.get_absolute_url }} ">{{ game.name }}</a></td> <!-- ten url tu prawidłowo prowadzi do GameDetailView -->
-    <td>{% if game.image %}<img src="{{ game.image.url }}" alt="...">{% endif %}</td>
-    <td>{{ game.game_type }}</td>
-    <td>{{ game.min_player }}</td>
-    <td>{{ game.max_player }}</td>
-    <td>{% for owner in game.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
-  </tr>
-    {% endfor %}
-  </table>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Nazwa gry</th>
+        <th scope="col">Zdjecie</th>
+        <th scope="col">Rodzaj</br> gry</th>
+        <th scope="col">Mechaniki</th>
+        <th scope="col">Minimalna </br>liczba</br> graczy</th>
+        <th scope="col">Maksymalna </br>liczba </br>graczy</th>
+        <th scope="col">Czas gry</br>(minuty)</th>
+        <th scope="col">Właściciel</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for game in game_list %}
+    <tr>
+        <td><a href="{{ game.get_absolute_url }} ">{{ game.name }}</a></td><!-- ten url tu prawidłowo prowadzi do GameDetailView -->
+        <td>{% if game.image %}<img src="{{ game.image.url }}" alt="...">{% endif %}</td>
+        <div>{% for game_type in game.game_type.all %}<td class="parentCell" title="{{ game_type.description }}"> {{ game_type.name }}{% endfor %}</td></div>
+        <td>{% for mechanic_type in game.mechanic_type.all %}<div title="{{ mechanic_type.description }}">{{ mechanic_type.name }}{% if not forloop.last %}</br>{% endif %}{% endfor %}</div> </td>
+        <td>{{ game.min_player }}</td>
+        <td>{{ game.max_player }}</td>
+        <td>{{ game.min_play_time }}</td>
+        <td>{% for owner in game.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner.name }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
 {% endblock %}

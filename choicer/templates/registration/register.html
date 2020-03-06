@@ -3,6 +3,7 @@
 
 {% block body %}
 {% load crispy_forms_tags %}
+<h1>Rejestracja</h1>
 <form method="POST" class="form-group">
 	{% csrf_token %}
 	{{ form|crispy }}

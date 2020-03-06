@@ -7,16 +7,16 @@ from django.contrib.auth.models import User
 class GameTypeForm(forms.ModelForm):
     player_num = forms.IntegerField(
         label="Liczba graczy",
-        min_value=1, max_value=99, required=False
-    )
+        min_value=1, max_value=99, required=False)
     owner = forms.ModelMultipleChoiceField(
             label="Właściciel",
             widget=forms.CheckboxSelectMultiple,
             required=False, queryset=Person.objects.all())  # to jest nowe pole, którego nie ma w models.py
 
+
     class Meta:
         model = Game
-        exclude = ('image', 'min_player', 'max_player')
+        exclude = ('image', 'min_player', 'max_player', 'description',)
 
 
 class RegisterForm(UserCreationForm):

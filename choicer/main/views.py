@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+
 from .models import Game, Person
 from django.views.generic import ListView, DetailView
 from .forms import GameTypeForm, RegisterForm
@@ -11,10 +12,10 @@ class GameListView(ListView):
     model = Game
     template_name = "main/filtrujemy.html"
     context_object_name = 'game_list'
-    ordering = "game_type"  # ordering = nazwa-pola // nazwa - to nazwa mojego pola, a pole to moje pole z modelu
+    ordering = "name"  # ordering = nazwa-pola // nazwa - to nazwa mojego pola, a pole to moje pole z modelu
     extra_context = {"form": GameTypeForm}
 
-    def get_queryset(self):
+    def get_queryset(self):  # TODO: Sorotwanie kolumn od najwiekszej do najmniejszej wartosci, do tego najlepiej JS
         game_type = self.request.GET.get("game_type")
         name = self.request.GET.get("name")
         player_num = self.request.GET.get("player_num")
@@ -44,25 +45,6 @@ class PersonDetailView(DetailView):
 class UserCreateView(CreateView):
     form_class = RegisterForm
     template_name = "registration/register.html"
-
-
-
-'''
--------------------------------------------------------------------------------------------------------------------------
-'''  # TODO: test serializer  - REST API
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .serializers import GameSerializer
-
-class GameList(APIView):
-
-    def get(self, requset):
-        games = Game.objects.all()
-        serializer = GameSerializer(games, many=True)
-        return Response(serializer.data)
-
-    def post(self):
-        pass
 
 
 # TODO: zastanwoić sie nad zaimplementowaniem tego
