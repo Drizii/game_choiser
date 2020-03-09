@@ -1,4 +1,4 @@
-from .models import Game, Person
+from .models import Game, Person, MechanicType, GameType
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -6,13 +6,18 @@ from django.contrib.auth.models import User
 
 class GameTypeForm(forms.ModelForm):
     player_num = forms.IntegerField(
-        label="Liczba graczy",
-        min_value=1, max_value=99, required=False)
+            label="Liczba graczy",
+            min_value=1, max_value=99, required=False)
     owner = forms.ModelMultipleChoiceField(
             label="Właściciel",
             widget=forms.CheckboxSelectMultiple,
             required=False, queryset=Person.objects.all())  # to jest nowe pole, którego nie ma w models.py
-
+    game_type = forms.ModelMultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            required=False, queryset=MechanicType.objects.all())
+    mechanic_type = forms.ModelMultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            required=False, queryset=MechanicType.objects.all())
 
     class Meta:
         model = Game

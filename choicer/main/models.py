@@ -1,10 +1,6 @@
-from typing import List, Tuple
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
-from django.contrib.auth.models import User
-from django.forms import CheckboxSelectMultiple
-
 # TODO: zrobić podział w admnieni na kategorie klas
 
 
@@ -27,7 +23,6 @@ class MechanicType(models.Model):
 class Person(models.Model):
     name = models.CharField(verbose_name="Imie i nazwisko", max_length=128)
 
-
     def __str__(self):
         return self.name
 
@@ -35,14 +30,14 @@ class Person(models.Model):
         return reverse("person-detail", args=[self.pk])
 
 
-class Game(models.Model):  #TODO: zrobienie tool tipa |||| przerobienie niektórych wartosci na M2M
+class Game(models.Model):  # TODO: zrobienie tool tipa |||| przerobienie niektórych wartosci na M2M
     name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
     description = models.TextField(verbose_name="Opis gry", blank=True)
     image = models.ImageField(verbose_name="Zdjęcie gry", null=True, blank=True, upload_to="game_images")
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", blank=True, null=True)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", blank=True, null=True)
     min_play_time = models.PositiveIntegerField(verbose_name="Minimalny czas gry(minuty)", blank=True, null=True)
-    game_type = models.ManyToManyField(GameType, verbose_name="Rodzaj gry", blank=True, null=True)  #TODO: mozna zaimplementowac checkboxy do zaznaczania
+    game_type = models.ManyToManyField(GameType, verbose_name="Rodzaj gry", blank=True, null=True)  # TODO: mozna zaimplementowac checkboxy do zaznaczania
     mechanic_type = models.ManyToManyField(MechanicType, verbose_name="Rodzaj gry", blank=True, null=True)
     owner = models.ManyToManyField(Person, verbose_name="Właściciel")
 
