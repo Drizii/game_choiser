@@ -21,9 +21,11 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
 <div class="table-responsive">
   <table class="table">
 {{ form.as_table }}
+<a href="{{ game.get_absolute_url }} ">{{ game.name }}</a>
   </table>
+
 </div>
-    </br><input type="submit" value="Wybierz">&nbsp;&nbsp;&nbsp;&nbsp;
+    </br><input type="submit" value="Wybierz">&nbsp;&nbsp;&nbsp;&nbsp
     <input type="button" value="Wróć do strony wyszukiwania" onclick="window.location.href = 'http://127.0.0.1:8000/a/'">
 </form></br>
                     <!--To wyświetla wszystkie pozycje z bazy danych na stronie-->

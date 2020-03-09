@@ -14,16 +14,18 @@ class GameTypeForm(forms.ModelForm):
             required=False, queryset=Person.objects.all())  # to jest nowe pole, którego nie ma w models.py
     game_type = forms.ModelMultipleChoiceField(
             widget=forms.CheckboxSelectMultiple,
-            required=False, queryset=MechanicType.objects.all())
+            label="Typ gry",
+            required=False, queryset=GameType.objects.all())
     mechanic_type = forms.ModelMultipleChoiceField(
             widget=forms.CheckboxSelectMultiple,
-            required=False, queryset=MechanicType.objects.all())
+            label="Mechnika",
+            required=False, queryset=MechanicType.objects.all(), help_text="test",)
 
     class Meta:
         model = Game
         exclude = ('image', 'min_player', 'max_player', 'description',)
 
-
+# https://medium.com/@alfarhanzahedi/customizing-modelmultiplechoicefield-in-a-django-form-96e3ae7e1a07  TODO zrobić to
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
     username = forms.CharField(label="Nazwa użytkownika")

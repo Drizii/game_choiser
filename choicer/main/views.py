@@ -20,6 +20,7 @@ class GameListView(ListView):
         name = self.request.GET.get("name")
         player_num = self.request.GET.get("player_num")
         owner = self.request.GET.get("owner")
+        min_play_time = self.request.GET.get("min_play_time")
         self.queryset = self.model.objects.all()
         if game_type:
             self.queryset = self.queryset.filter(game_type=game_type)
