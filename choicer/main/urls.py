@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .views import GameListView, GameDetailView, PersonDetailView, UserCreateView
 
+
 urlpatterns = [
     path("", GameListView.as_view(), name='Game_view'),
     path('<int:pk>/', GameDetailView.as_view(), name='game-detail'),  # jezeli zmienie "game-detail" to wtedy absolute url nie generuje sie do linku

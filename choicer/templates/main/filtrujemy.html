@@ -21,7 +21,6 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
 <div class="table-responsive">
   <table class="table">
 {{ form.as_table }}
-<a href="{{ game.get_absolute_url }} ">{{ game.name }}</a>
   </table>
 
 </div>
@@ -39,9 +38,10 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
         <th scope="col">Minimalna </br>liczba</br> graczy</th>
         <th scope="col">Maksymalna </br>liczba </br>graczy</th>
         <th scope="col">Czas gry</br>(minuty)</th>
-        <th scope="col">Właściciel</th>
+        <th scope="col">użytkownik</th>
     </tr>
   </thead>
+
   <tbody>
 {% for game in game_list %}
     <tr>
@@ -52,7 +52,7 @@ korzysta to z forms GameTypeForm, ale dlaczego on taki mądry i od razu robi mi 
         <td>{{ game.min_player }}</td>
         <td>{{ game.max_player }}</td>
         <td>{{ game.min_play_time }}</td>
-        <td>{% for owner in game.owner.all  %}<a href="{{ owner.get_absolute_url }}">{{ owner.name }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+        <td><a href="{{ game.user.get_absolute_url }}">{{ game.user }}</a>{% if not forloop.last %}, {% endif %}</td>
     </tr>
 {% endfor %}
   </tbody>

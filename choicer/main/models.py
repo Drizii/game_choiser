@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from django.contrib.auth.models import User
 # TODO: zrobić podział w admnieni na kategorie klas
 
 
@@ -11,6 +12,10 @@ class GameType(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Typ gry"  # pozwala podać nazwe pola w liczbie pojedynczej
+        verbose_name_plural = "_Typy Gry"  # pozwala zmienić nazwe pola na liście modeli w Adminie
+
 
 class MechanicType(models.Model):
     name = models.CharField(verbose_name="Nazwa mechaniki", max_length=128, blank=True, null=True)
@@ -19,27 +24,31 @@ class MechanicType(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Mechanika"
+        verbose_name_plural = "_Mechaniki gier"
 
-class Person(models.Model):
-    name = models.CharField(verbose_name="Imie i nazwisko", max_length=128)
+
+class Users(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)  # TODO do zmiany w przyszłosci, przerobienie User na bardziej przejrzysty
 
     def __str__(self):
-        return self.name
+        return str(self.user)
 
     def get_absolute_url(self):
         return reverse("person-detail", args=[self.pk])
 
 
-class Game(models.Model):  # TODO: zrobienie tool tipa |||| przerobienie niektórych wartosci na M2M
+class Game(models.Model):
     name = models.CharField(verbose_name="Nazwa gry", max_length=128, blank=True)
     description = models.TextField(verbose_name="Opis gry", blank=True)
     image = models.ImageField(verbose_name="Zdjęcie gry", null=True, blank=True, upload_to="game_images")
     min_player = models.PositiveSmallIntegerField(verbose_name="Minimalna liczba graczy", blank=True, null=True)
     max_player = models.PositiveSmallIntegerField(verbose_name="Maksymalna liczb graczy", blank=True, null=True)
     min_play_time = models.PositiveIntegerField(verbose_name="Minimalny czas gry(minuty)", blank=True, null=True)
-    game_type = models.ManyToManyField(GameType, verbose_name="Rodzaj gry", blank=True, null=True)  # TODO: mozna zaimplementowac checkboxy do zaznaczania
-    mechanic_type = models.ManyToManyField(MechanicType, verbose_name="Rodzaj gry", blank=True, null=True)
-    owner = models.ManyToManyField(Person, verbose_name="Właściciel")
+    game_type = models.ManyToManyField(GameType, verbose_name="Rodzaj gry", blank=True)  # TODO: mozna zaimplementowac checkboxy do zaznaczania w adminie
+    mechanic_type = models.ManyToManyField(MechanicType, verbose_name="Rodzaj gry", blank=True)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, blank=True, null=True)
 
     def clean(self):
         self.clean_players()

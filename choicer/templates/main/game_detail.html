@@ -16,7 +16,7 @@
     <td>Minimalna liczba graczy</td>
     <td>Maksymalna liczba graczy</td>
     <td>Czas gry<br>(minuty)</td>
-    <td>Właściciele: </td>
+    <td>Użytkownik: </td>
   </tr>
   <tr>
     <td>{{ game.name }}</td>
@@ -24,7 +24,7 @@
     <td>{{ game.min_player }}</td>
     <td>{{ game.max_player }}</td>
     <td>{{ game.min_play_time }}+</td>
-    <td>{% for owner in game.owner.all  %}{{ owner }}{% if not forloop.last %}, {% endif %} {% endfor %}</td>
+    <td>{{ game.user }}</td>
   </tr>
 </table><br><br>
     {% if game.image %}<img src="{{ game.image.url }}" alt="..." class="center">{% endif %}

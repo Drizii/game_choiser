@@ -1,4 +1,4 @@
-from .models import Game, Person, MechanicType, GameType
+from .models import Game, MechanicType, GameType, Users
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -8,10 +8,10 @@ class GameTypeForm(forms.ModelForm):
     player_num = forms.IntegerField(
             label="Liczba graczy",
             min_value=1, max_value=99, required=False)
-    owner = forms.ModelMultipleChoiceField(
-            label="Właściciel",
+    user = forms.ModelMultipleChoiceField(
             widget=forms.CheckboxSelectMultiple,
-            required=False, queryset=Person.objects.all())  # to jest nowe pole, którego nie ma w models.py
+            label="Użytkownicy",
+            required=False, queryset=Users.objects.all())
     game_type = forms.ModelMultipleChoiceField(
             widget=forms.CheckboxSelectMultiple,
             label="Typ gry",
@@ -19,13 +19,15 @@ class GameTypeForm(forms.ModelForm):
     mechanic_type = forms.ModelMultipleChoiceField(
             widget=forms.CheckboxSelectMultiple,
             label="Mechnika",
-            required=False, queryset=MechanicType.objects.all(), help_text="test",)
+            required=False, queryset=MechanicType.objects.all())
 
     class Meta:
         model = Game
         exclude = ('image', 'min_player', 'max_player', 'description',)
 
-# https://medium.com/@alfarhanzahedi/customizing-modelmultiplechoicefield-in-a-django-form-96e3ae7e1a07  TODO zrobić to
+# https://medium.com/@alfarhanzahedi/customizing-modelmultiplechoicefield-in-a-django-form-96e3ae7e1a07  TODO zrobić to wyswietlanie calych checkboxów
+
+
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
     username = forms.CharField(label="Nazwa użytkownika")

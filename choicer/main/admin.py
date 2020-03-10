@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Person, Game, GameType, MechanicType
+from .models import Game, GameType, MechanicType, Users
 
 
-admin.site.register(Person),
 admin.site.register(Game),
 admin.site.register(GameType),
 admin.site.register(MechanicType),
+admin.site.register(Users),
