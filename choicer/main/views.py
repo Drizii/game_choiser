@@ -1,12 +1,7 @@
-from django.core.checks import messages
-
 from .models import Game, Users
 from django.views.generic import ListView, DetailView
 from .forms import GameTypeForm, RegisterForm
 from django.views.generic import CreateView
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
-from django.shortcuts import render, redirect
 
 
 class GameListView(ListView):
@@ -15,6 +10,7 @@ class GameListView(ListView):
     context_object_name = 'game_list'
     ordering = "name"  # ordering = nazwa-pola // nazwa - to nazwa mojego pola, a pole to moje pole z modelu
     extra_context = {"form": GameTypeForm}
+    paginate_by = 5
 
     def get_queryset(self):  # TODO: Sorotwanie kolumn od najwiekszej do najmniejszej wartosci, do tego najlepiej JS
         game_type = self.request.GET.get("game_type")

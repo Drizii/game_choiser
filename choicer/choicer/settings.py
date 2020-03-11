@@ -129,4 +129,4 @@ MEDIA_ROOT = (os.path.join(BASE_DIR, 'media/'))
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-LOGIN_REDIRECT_URL = ('http://127.0.0.1:8000/a')
+LOGIN_REDIRECT_URL = ('http://127.0.0.1:8000/a/user/profile') # TODO popracować nad user/profile
