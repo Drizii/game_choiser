@@ -3,12 +3,6 @@
 
 {% block body %}
 {% load crispy_forms_tags %}
-<h1>Rejestracja</h1>
-<form method="POST" class="form-group">
-	{% csrf_token %}
-	{{ form|crispy }}
-	<p>Masz konto? Zaloguj się klikając <a href="/a/user/login">tutaj.</a></p>
-	<p>* pola wymagane</p>
-	<button type="submit" class="btn btn-success">Zarejestruj</button>
-</form>
+<h1>wylogowany</h1>
+
 {% endblock %}

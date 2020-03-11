@@ -39,9 +39,8 @@
     <ul class="nav navbar-nav navbar-right">
     {% if user.is_authenticated%}
     <li><a href="#">Witaj, {{ user.get_username }}.</a></li>
-    <li><a href="http://127.0.0.1:8000/a/user/register"><span class="glyphicon glyphicon-log-out"></span>Wyloguj</a></li>
-    {% endif %}
-    {% if user.is_not_autenticated %}
+    <li><a href="http://127.0.0.1:8000/a/user/logout"><span class="glyphicon glyphicon-log-out"></span>Wyloguj</a></li>
+    {% else %}
     <li><a href="http://127.0.0.1:8000/a/user/register"><span class="glyphicon glyphicon-user"></span>Rejestracja</a></li>
     <li><a href="http://127.0.0.1:8000/a/user/login"><span class="glyphicon glyphicon-log-in"></span> Logowanie</a></li>
     {% endif %}
