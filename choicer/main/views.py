@@ -1,7 +1,12 @@
+from django.core.checks import messages
+
 from .models import Game, Users
 from django.views.generic import ListView, DetailView
 from .forms import GameTypeForm, RegisterForm
 from django.views.generic import CreateView
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
+from django.shortcuts import render, redirect
 
 
 class GameListView(ListView):
@@ -48,7 +53,6 @@ class PersonDetailView(DetailView):  # to zmienic na User'a TODO wyswietlanie ja
 class UserCreateView(CreateView):
     form_class = RegisterForm
     template_name = "registration/register.html"
-
 
 
 # TODO: zastanwoić sie nad zaimplementowaniem tego
