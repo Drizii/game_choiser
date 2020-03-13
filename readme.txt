@@ -22,10 +22,10 @@ TO CORRECTION:
 2. Naprawa wyszukiwania po mechanice i rodzaju gry
    -  aktualnie w przypadku zaznaczenia 2+ opcji wyszukiwana jest tylko ostatnia wybraana opcja
    -  chcę aby były wyszukiwane wszystkei elemety pasujące
+3. Wyświetlenie informacji o zalowowaniu się
+4. Wyświetlenie informacji o wylogowaniu się
 
 TO view FIX:
 1. poprawa paginatora na środek strony
 2. poprawa strony profilu użytkownika 
 3. Poprawa wyświetlania się formularza wyszukiwania
-
-
