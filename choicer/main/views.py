@@ -13,15 +13,15 @@ class GameListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):  # TODO: Sorotwanie kolumn od najwiekszej do najmniejszej wartosci, do tego najlepiej JS
-        game_type = self.request.GET.get("game_type")
+        game_type = dict(self.request.GET).get("game_type")
         name = self.request.GET.get("name")
         player_num = self.request.GET.get("player_num")
         min_play_time = self.request.GET.get("min_play_time")
-        mechanic_type = self.request.GET.get("mechanic_type")
+        mechanic_type = dict(self.request.GET).get("mechanic_type")
         user = self.request.GET.get("user")
         self.queryset = self.model.objects.all()
         if game_type:
-            self.queryset = self.queryset.filter(game_type=game_type)
+            self.queryset = self.queryset.filter(game_type__in=game_type)
         if name:
             self.queryset = self.queryset.filter(name__icontains=name)
         if player_num:
@@ -29,10 +29,10 @@ class GameListView(ListView):
         if min_play_time:
             self.queryset = self.queryset.filter(min_play_time__gte=min_play_time)
         if mechanic_type:
-            self.queryset = self.queryset.filter(mechanic_type=mechanic_type)
+            self.queryset = self.queryset.filter(mechanic_type__in=mechanic_type)
         if user:
             self.queryset = self.queryset.filter(user=user)
-        return super().get_queryset()  # TODO naprawić wyszukiwanie tak, aby byla mozliwosc wyszukania gier po polach game_type
+        return super().get_queryset().distinct()  # TODO naprawić wyszukiwanie tak, aby byla mozliwosc wyszukania gier po polach game_type
     # name__icontains wystarczy wpisać część słowa, aby zostały dopasowane wszystkie słowa np: mam w bazie name="bitewniak" i jak wpiszę "bi" to zadziała
 
 
@@ -42,8 +42,12 @@ class GameDetailView(DetailView):
 
 class PersonDetailView(DetailView):  # to zmienic na User'a TODO wyswietlanie jako profilu użytkownika, użytkownik moze dodać gry jako swoje
     model = Users
-    context_object_name = "person_detail"
     template_name = "main/person_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data["games"] = self.object.game_set.all()
+        return context_data
 
 
 class UserCreateView(CreateView):

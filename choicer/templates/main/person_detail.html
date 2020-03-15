@@ -12,12 +12,12 @@
 <div class="container">
 <table style="width:100%" >
   <ul>
-    <li>Właściciel:{{ person_detail.user }}</li>
+    <li>Właściciel: {{ object }}</li>
     <li>Posiadasz następujące gry:</li>
   </ul>
 
 
-{% for obj in person_detail.game_set.all %}
+    {% for obj in games %}
     <li><a href="{{ obj.get_absolute_url }} ">{{ obj }}</a></li>
     {% if not forloop.last %} &nbsp
     {% endif %}

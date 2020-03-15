@@ -29,11 +29,9 @@ class MechanicType(models.Model):
         verbose_name_plural = "_Mechaniki gier"
 
 
-class Users(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)  # TODO do zmiany w przyszłosci, przerobienie User na bardziej przejrzysty
-
-    def __str__(self):
-        return str(self.user)
+class Users(User):
+    class Meta:
+        proxy = True
 
     def get_absolute_url(self):
         return reverse("person-detail", args=[self.pk])
