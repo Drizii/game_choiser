@@ -1,6 +1,6 @@
 TODO:
 1. Sortowanie kolumn po wartości
-2. Predefiniowany filtr
+2. Predefiniowany zestaw filtrów
   - zestaw filtrów możliwy do dodania przez usera
   - po stworzeniu takie zestawu przez użytkownika i wyborze go 
     przez niego automtycznie zostana zaznaczone pola predefiniowane w zestawie
