@@ -1,4 +1,4 @@
 django==2.2
-Pillow==7.0
+Pillow==8.1.1
 factoryboy==2.12.0
 coverage==5.0.3
